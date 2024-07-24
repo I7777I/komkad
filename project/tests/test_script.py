@@ -123,7 +123,7 @@ class TestMain(unittest.IsolatedAsyncioTestCase):
         session: object,
         url: str,
         part_index: int,
-        content: list,
+        content_list: list,
     ) -> None:
         """
         Функция для замены функции download_part в классе TestMain.
@@ -132,10 +132,9 @@ class TestMain(unittest.IsolatedAsyncioTestCase):
             session: объект класса aiohttp.ClientSession
             url: адрес скачиваемого файла
             part_index: индекс скачиваемого файла
-            content: содержимое файла
-            content: содержимое файла
+            content_list: содержимое файла
         """
-        content[part_index] = b'testdata'
+        content_list[part_index] = b'testcase'
 
     @staticmethod
     def new_calculate_sha256_for_zip_files(*args: tuple) -> dict:
@@ -153,8 +152,9 @@ class TestMain(unittest.IsolatedAsyncioTestCase):
 
     def setUp(self) -> None:  # noqa: ANN101
         """Создаём объект класса TestMain."""
-        with open('file2.txt', 'wb') as output_file:
-            data_to_write = b'testdata'
+        self.filename = 'file2.txt'
+        with open(self.filename, 'wb') as output_file:
+            data_to_write = b'testcase'
             output_file.write(data_to_write)
 
     @patch(
@@ -168,7 +168,7 @@ class TestMain(unittest.IsolatedAsyncioTestCase):
 
     def tearDown(self) -> None:  # noqa: ANN101
         """Удаляем созданный файл."""
-        os.remove('file2.txt')
+        os.remove(self.filename)
 
 
 class TestMainError(unittest.IsolatedAsyncioTestCase):
