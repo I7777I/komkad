@@ -2,6 +2,7 @@
 
 # импорт стандартных библиотек
 import os
+import sys
 import unittest
 from hashlib import sha256
 from pathlib import Path
@@ -9,8 +10,10 @@ from pathlib import Path
 from unittest.mock import AsyncMock, MagicMock, patch
 from zipfile import ZipFile
 
+sys.path.append('./')
+
 # Импорт локальных модулей
-from project.script import (
+from project.script import (  # noqa: E402
     calculate_sha256,
     calculate_sha256_for_zip_files,
     download_part,

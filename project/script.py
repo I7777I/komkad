@@ -23,7 +23,6 @@ CHUNK_SIZE = 1024  # Размер одной части в байтах
 TOTAL_PARTS = 3  # Общее количество частей
 URL = 'https://gitea.radium.group/radium/project-configuration/archive/master.zip'  # noqa: E501
 
-
 async def download_part(
     session: object,
     url: str,
