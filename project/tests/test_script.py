@@ -214,7 +214,7 @@ class TestMainError(unittest.IsolatedAsyncioTestCase):
                        если не удалось прочитать ХЭШи файлов.
                        если аргументы функции некорректны.
         """
-        raise Exception
+        raise Exception  # pragma: no cover
 
     @patch('project.script.download_part', new=new_download_part)
     async def test_main_error_read(self) -> None:  # noqa: ANN101
